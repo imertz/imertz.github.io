@@ -110,17 +110,25 @@
   <script>
     const ul = document.getElementById("authors");
     let email = document.createElement("span");
-    let val = `<h4>ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ</h4><p><h5>ΠΛΗΡΩΜΗ ☑️</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ☑️</h5><img src="ippo.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`;
+    let val = [
+      `<h4>ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ</h4><p><h5>ΠΛΗΡΩΜΗ ☑️</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ☑️</h5><img src="ippo.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`,
+      `<h4>ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ</h4><p><h5>ΠΛΗΡΩΜΗ ❌</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ❌</h5><img src="mertz.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`,
+    ];
     const jsonData = [
       { name: "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ", paid: "yes", cert: "yes" },
-      { name: "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ", paid: "yes", cert: "yes" },
+      { name: "ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ", paid: "no", cert: "no" },
     ];
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
-      if (jsonData.some((k) => k.name === decodedText)) {
+      if (decodedText ==='ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ')) {
         console.log("MATCHED");
-        ul.insertAdjacentHTML("beforeend", val);
+        ul.insertAdjacentHTML("beforeend", val[0]);
+        val = "";
+      }
+      if (decodedText ==='ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ') {
+        console.log("MATCHED");
+        ul.insertAdjacentHTML("beforeend", val[1]);
         val = "";
       }
     }
