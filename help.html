@@ -121,12 +121,12 @@
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
-      if (decodedText ==='ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ')) {
+      if (decodedText === "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ") {
         console.log("MATCHED");
         ul.insertAdjacentHTML("beforeend", val[0]);
         val = "";
       }
-      if (decodedText ==='ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ') {
+      if (decodedText === "ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ") {
         console.log("MATCHED");
         ul.insertAdjacentHTML("beforeend", val[1]);
         val = "";
