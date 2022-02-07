@@ -7,13 +7,48 @@
     <title>Help</title>
   </head>
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script>
+    const uri = "https://jsonplaceholder.typicode.com/posts";
+    const initDetails = {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      mode: "cors",
+    };
+
+    function GetData() {
+      fetch(uri, initDetails)
+        .then((response) => {
+          if (response.status !== 200) {
+            console.log(
+              "Looks like there was a problem. Status Code: " + response.status
+            );
+            return;
+          }
+
+          console.log(response.headers.get("Content-Type"));
+          return response.json();
+        })
+        .then((myJson) => {
+          console.log(JSON.stringify(myJson));
+        })
+        .catch((err) => {
+          console.log("Fetch Error :-S", err);
+        });
+    }
+  </script>
   <body>
     <div style="width: 100%; min-height: 100px; text-align: center">
       <img src="logo.jpeg" alt="ΑΣ ΠΕΡΑ" width="80" />
+      <div id="authors"></div>
+      <div id="reader" width="100px" height="100px"></div>
     </div>
 
     <div id="reader" width="100px" height="100px"></div>
-    <div id="authors"></div>
+
+    <button id="getData" onclick="GetData()">Get Data</button>
+
     <style type="text/css">
       .tg {
         border-collapse: collapse;
@@ -76,11 +111,17 @@
   <script>
     const ul = document.getElementById("authors");
     let email = document.createElement("span");
+    const val = `<h4>ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ</h4><p><h5>ΠΛΗΡΩΜΗ ☑️</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ☑️</h5></p>`;
+    const jsonData = [
+      { name: "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ", paid: "yes", cert: "yes" },
+      { name: "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ", paid: "yes", cert: "yes" },
+    ];
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
-      email.innerText = `Code matched = ${decodedText} ${decodedResult}`;
-      ul.appendChild(email);
+      if (jsonData.some((k) => k.name === decodedText)) {
+        ul.appendChild(val);
+      }
     }
 
     function onScanFailure(error) {
