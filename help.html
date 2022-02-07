@@ -42,7 +42,6 @@
     <div style="width: 100%; min-height: 100px; text-align: center">
       <img src="logo.jpeg" alt="ΑΣ ΠΕΡΑ" width="80" />
       <div id="authors"></div>
-      <div id="reader" width="100px" height="100px"></div>
     </div>
 
     <div id="reader" width="100px" height="100px"></div>
@@ -97,13 +96,13 @@
       <tbody>
         <tr>
           <td class="tg-0lax">ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ</td>
-          <td class="tg-0lax">ΝΑΙ</td>
-          <td class="tg-0lax">ΝΑΙ</td>
+          <td class="tg-0lax">ΟΧΙ</td>
+          <td class="tg-0lax">ΟΧΙ</td>
         </tr>
         <tr>
           <td class="tg-0lax">ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ</td>
-          <td class="tg-0lax">ΟΧΙ</td>
-          <td class="tg-0lax">ΟΧΙ</td>
+          <td class="tg-0lax">ΝΑΙ</td>
+          <td class="tg-0lax">ΝΑΙ</td>
         </tr>
       </tbody>
     </table>
@@ -111,7 +110,7 @@
   <script>
     const ul = document.getElementById("authors");
     let email = document.createElement("span");
-    const val = `<h4>ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ</h4><p><h5>ΠΛΗΡΩΜΗ ☑️</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ☑️</h5></p>`;
+    let val = `<h4>ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ</h4><p><h5>ΠΛΗΡΩΜΗ ☑️</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ☑️</h5><img src="ippo.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`;
     const jsonData = [
       { name: "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ", paid: "yes", cert: "yes" },
       { name: "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ", paid: "yes", cert: "yes" },
@@ -120,7 +119,9 @@
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
       if (jsonData.some((k) => k.name === decodedText)) {
-        ul.appendChild(val);
+        console.log("MATCHED");
+        ul.insertAdjacentHTML("beforeend", val);
+        val = "";
       }
     }
 
