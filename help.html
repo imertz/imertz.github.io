@@ -10,11 +10,16 @@
   <body>
     No biggie
     <div id="reader" width="600px"></div>
+    <div id="authors">NIce</div>
   </body>
   <script>
+    const ul = document.getElementById("authors");
+    let email = document.createElement("span");
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
+      email.innerText = `Code matched = ${decodedText} ${decodedResult}`;
+      ul.appendChild(email);
     }
 
     function onScanFailure(error) {
@@ -28,6 +33,7 @@
       { fps: 10, qrbox: { width: 250, height: 250 } },
       /* verbose= */ false
     );
+
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
   </script>
 </html>
