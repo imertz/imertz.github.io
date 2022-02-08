@@ -7,6 +7,8 @@
     <title>Help</title>
   </head>
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script src="https://unpkg.com/stein-js-client"></script>
+
   <script>
     const uri = "https://jsonplaceholder.typicode.com/posts";
     const initDetails = {
@@ -108,6 +110,10 @@
     </table>
   </body>
   <script>
+    const store = new SteinStore(
+      "https://api.steinhq.com/v1/storages/6202538dc582292380ca4d46"
+    );
+
     const ul = document.getElementById("authors");
     let email = document.createElement("span");
     let val = [
@@ -138,7 +144,6 @@
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
       if (jsonData.some((k) => k.name === decodedText)) {
-        console.log("Hi");
         ul.innerHTML = "";
         const ind = jsonData.findIndex((r) => r.name === decodedText);
         val = `<h4>${decodedText}</h4><p><h5>ΠΛΗΡΩΜΗ ${
@@ -148,6 +153,16 @@
         }</h5><img src=${jsonData[ind].pic} alt="ΑΣ ΠΕΡΑ" width="80" /></p>`;
         console.log("MATCHED");
         ul.insertAdjacentHTML("beforeend", val);
+        store
+          .append("Sheet2", [
+            {
+              name: decodedText,
+              imerominia: new Date().toLocaleString("el-GR"),
+            },
+          ])
+          .then((res) => {
+            console.log(res);
+          });
       }
     }
 
@@ -165,4 +180,5 @@
 
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
   </script>
+  <script></script>
 </html>
