@@ -140,6 +140,8 @@
       { name: "ΑΝΤΩΝΙΟΣ ΛΑΡΕΝΤΖΑΚΗΣ", paid: "no", cert: "no", pic: "lare.png" },
       { name: "ΕΛΛΗ ΠΛΑΤΑΝΟΥ", paid: "yes", cert: "yes", pic: "elli.png" },
     ];
+
+    let newValue = "";
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
@@ -152,11 +154,14 @@
           jsonData[ind].cert === "yes" ? "☑️" : "❌"
         }</h5><img src=${jsonData[ind].pic} alt="ΑΣ ΠΕΡΑ" width="80" /></p>`;
         console.log("MATCHED");
+        if (newValue !== decodedText) {
+          newValue = decodedText;
+        }
         ul.insertAdjacentHTML("beforeend", val);
         store
           .append("Sheet2", [
             {
-              name: decodedText,
+              name: newValue,
               imerominia: new Date().toLocaleString("el-GR"),
             },
           ])
