@@ -115,21 +115,28 @@
       `<h4>ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ</h4><p><h5>ΠΛΗΡΩΜΗ ❌</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ❌</h5><img src="mertz.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`,
     ];
     const jsonData = [
-      { name: "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ", paid: "yes", cert: "yes" },
-      { name: "ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ", paid: "no", cert: "no" },
+      {
+        name: "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ",
+        paid: "yes",
+        cert: "yes",
+        pic: "ippo.png",
+      },
+      { name: "ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ", paid: "no", cert: "no", pic: "mertz.png" },
     ];
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
-      if (decodedText === "ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ") {
+      if (jsonData.some((k) => k.name === decodedText)) {
+        console.log("Hi");
+        ul.innerHTML = "";
+        const ind = jsonData.findIndex((r) => r.name === decodedText);
+        val = `<h4>${decodedText}</h4><p><h5>ΠΛΗΡΩΜΗ ${
+          jsonData[ind].paid === "yes" ? "☑️" : "❌"
+        }</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ${
+          jsonData[ind].cert === "yes" ? "☑️" : "❌"
+        }</h5><img src=${jsonData[ind].pic} alt="ΑΣ ΠΕΡΑ" width="80" /></p>`;
         console.log("MATCHED");
-        ul.insertAdjacentHTML("beforeend", val[0]);
-        val = ["", ""];
-      }
-      if (decodedText === "ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ") {
-        console.log("MATCHED");
-        ul.insertAdjacentHTML("beforeend", val[1]);
-        val = ["", ""];
+        ul.insertAdjacentHTML("beforeend", val);
       }
     }
 
@@ -141,7 +148,7 @@
 
     let html5QrcodeScanner = new Html5QrcodeScanner(
       "reader",
-      { fps: 10, qrbox: { width: 250, height: 250 } },
+      { fps: 3, qrbox: { width: 250, height: 250 } },
       /* verbose= */ false
     );
 
