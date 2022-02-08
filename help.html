@@ -40,7 +40,7 @@
         });
     }
   </script>
-  <body>
+  <body id="body">
     <div style="width: 100%; min-height: 100px; text-align: center">
       <img src="logo.jpeg" alt="ΑΣ ΠΕΡΑ" width="80" />
       <div id="authors"></div>
@@ -145,6 +145,8 @@
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code as you like, for example:
       console.log(`Code matched = ${decodedText}`, decodedResult);
+      document.getElementById("body").style.backgroundColor = "blue";
+
       if (jsonData.some((k) => k.name === decodedText)) {
         ul.innerHTML = "";
         const ind = jsonData.findIndex((r) => r.name === decodedText);
