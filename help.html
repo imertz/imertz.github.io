@@ -159,16 +159,19 @@
         console.log("MATCHED");
 
         ul.insertAdjacentHTML("beforeend", val);
-        store
-          .append("Sheet2", [
-            {
-              name: newValue,
-              imerominia: new Date().toLocaleString("el-GR"),
-            },
-          ])
-          .then((res) => {
-            console.log(res);
-          });
+        if (newValue !== decodedText) {
+          newValue = decodedText;
+          store
+            .append("Sheet2", [
+              {
+                name: newValue,
+                imerominia: new Date().toLocaleString("el-GR"),
+              },
+            ])
+            .then((res) => {
+              console.log(res);
+            });
+        }
       }
     }
 
