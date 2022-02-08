@@ -113,6 +113,9 @@
     let val = [
       `<h4>ΙΠΠΟΚΡΑΤΗΣ ΣΤΑΜΠΟΥΛΟΓΛΟΥ</h4><p><h5>ΠΛΗΡΩΜΗ ☑️</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ☑️</h5><img src="ippo.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`,
       `<h4>ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ</h4><p><h5>ΠΛΗΡΩΜΗ ❌</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ❌</h5><img src="mertz.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`,
+      `<h4>ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ</h4><p><h5>ΠΛΗΡΩΜΗ ❌</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ❌</h5><img src="elli.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`,
+      `<h4>ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ</h4><p><h5>ΠΛΗΡΩΜΗ ❌</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ❌</h5><img src="lare.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`,
+      `<h4>ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ</h4><p><h5>ΠΛΗΡΩΜΗ ❌</h5></p><h5>ΠΙΣΤΟΠΟΙΗΤΙΚΟ ❌</h5><img src="aggelo.png" alt="ΑΣ ΠΕΡΑ" width="80" /></p>`,
     ];
     const jsonData = [
       {
@@ -122,6 +125,14 @@
         pic: "ippo.png",
       },
       { name: "ΙΩΑΝΝΗΣ ΜΕΡΤΖΑΝΗΣ", paid: "no", cert: "no", pic: "mertz.png" },
+      {
+        name: "ΙΩΑΝΝΗΣ ΑΓΓΕΛΟΠΟΥΛΟΣ",
+        paid: "yes",
+        cert: "no",
+        pic: "aggelo.png",
+      },
+      { name: "ΑΝΤΩΝΙΟΣ ΛΑΡΕΝΤΖΑΚΗΣ", paid: "no", cert: "no", pic: "lare.png" },
+      { name: "ΕΛΛΗ ΠΛΑΤΑΝΟΥ", paid: "yes", cert: "yes", pic: "elli.png" },
     ];
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code as you like, for example:
